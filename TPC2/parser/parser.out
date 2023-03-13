@@ -1,0 +1,442 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    EXCL
+    GT
+    LT
+
+Grammar
+
+Rule 0     S' -> entries
+Rule 1     entries -> entry
+Rule 2     entries -> entries entry
+Rule 3     entry -> HASH WORD LANG WORD RANG values notes remissiveEntries
+Rule 4     values -> VAR COLON WORD
+Rule 5     values -> SYN COLON WORD
+Rule 6     values -> VAL COLON WORD
+Rule 7     values -> values VAR COLON WORD
+Rule 8     values -> values SYN COLON WORD
+Rule 9     values -> values VAL COLON WORD
+Rule 10    notes -> NOTE WORD
+Rule 11    notes -> notes NOTE WORD
+Rule 12    remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD
+Rule 13    remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD
+
+Terminals, with rules where they appear
+
+COLON                : 4 5 6 7 8 9
+ENTRY                : 12
+EXCL                 : 
+GT                   : 
+HASH                 : 3
+LANG                 : 3
+LT                   : 
+NOTE                 : 10 11
+RANG                 : 3
+REM                  : 12
+SEMI_COLON           : 12 12 13 13 13
+SYN                  : 5 8
+VAL                  : 6 9
+VAR                  : 4 7
+WORD                 : 3 3 4 5 6 7 8 9 10 11 12 12 12 13 13 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+entries              : 2 0
+entry                : 1 2
+notes                : 3 11
+remissiveEntries     : 3 13
+values               : 3 7 8 9
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . entries
+    (1) entries -> . entry
+    (2) entries -> . entries entry
+    (3) entry -> . HASH WORD LANG WORD RANG values notes remissiveEntries
+
+    HASH            shift and go to state 3
+
+    entries                        shift and go to state 1
+    entry                          shift and go to state 2
+
+state 1
+
+    (0) S' -> entries .
+    (2) entries -> entries . entry
+    (3) entry -> . HASH WORD LANG WORD RANG values notes remissiveEntries
+
+    HASH            shift and go to state 3
+
+    entry                          shift and go to state 4
+
+state 2
+
+    (1) entries -> entry .
+
+    HASH            reduce using rule 1 (entries -> entry .)
+    $end            reduce using rule 1 (entries -> entry .)
+
+
+state 3
+
+    (3) entry -> HASH . WORD LANG WORD RANG values notes remissiveEntries
+
+    WORD            shift and go to state 5
+
+
+state 4
+
+    (2) entries -> entries entry .
+
+    HASH            reduce using rule 2 (entries -> entries entry .)
+    $end            reduce using rule 2 (entries -> entries entry .)
+
+
+state 5
+
+    (3) entry -> HASH WORD . LANG WORD RANG values notes remissiveEntries
+
+    LANG            shift and go to state 6
+
+
+state 6
+
+    (3) entry -> HASH WORD LANG . WORD RANG values notes remissiveEntries
+
+    WORD            shift and go to state 7
+
+
+state 7
+
+    (3) entry -> HASH WORD LANG WORD . RANG values notes remissiveEntries
+
+    RANG            shift and go to state 8
+
+
+state 8
+
+    (3) entry -> HASH WORD LANG WORD RANG . values notes remissiveEntries
+    (4) values -> . VAR COLON WORD
+    (5) values -> . SYN COLON WORD
+    (6) values -> . VAL COLON WORD
+    (7) values -> . values VAR COLON WORD
+    (8) values -> . values SYN COLON WORD
+    (9) values -> . values VAL COLON WORD
+
+    VAR             shift and go to state 10
+    SYN             shift and go to state 11
+    VAL             shift and go to state 12
+
+    values                         shift and go to state 9
+
+state 9
+
+    (3) entry -> HASH WORD LANG WORD RANG values . notes remissiveEntries
+    (7) values -> values . VAR COLON WORD
+    (8) values -> values . SYN COLON WORD
+    (9) values -> values . VAL COLON WORD
+    (10) notes -> . NOTE WORD
+    (11) notes -> . notes NOTE WORD
+
+    VAR             shift and go to state 14
+    SYN             shift and go to state 15
+    VAL             shift and go to state 16
+    NOTE            shift and go to state 17
+
+    notes                          shift and go to state 13
+
+state 10
+
+    (4) values -> VAR . COLON WORD
+
+    COLON           shift and go to state 18
+
+
+state 11
+
+    (5) values -> SYN . COLON WORD
+
+    COLON           shift and go to state 19
+
+
+state 12
+
+    (6) values -> VAL . COLON WORD
+
+    COLON           shift and go to state 20
+
+
+state 13
+
+    (3) entry -> HASH WORD LANG WORD RANG values notes . remissiveEntries
+    (11) notes -> notes . NOTE WORD
+    (12) remissiveEntries -> . REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD
+    (13) remissiveEntries -> . remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD
+
+    NOTE            shift and go to state 22
+    REM             shift and go to state 23
+
+    remissiveEntries               shift and go to state 21
+
+state 14
+
+    (7) values -> values VAR . COLON WORD
+
+    COLON           shift and go to state 24
+
+
+state 15
+
+    (8) values -> values SYN . COLON WORD
+
+    COLON           shift and go to state 25
+
+
+state 16
+
+    (9) values -> values VAL . COLON WORD
+
+    COLON           shift and go to state 26
+
+
+state 17
+
+    (10) notes -> NOTE . WORD
+
+    WORD            shift and go to state 27
+
+
+state 18
+
+    (4) values -> VAR COLON . WORD
+
+    WORD            shift and go to state 28
+
+
+state 19
+
+    (5) values -> SYN COLON . WORD
+
+    WORD            shift and go to state 29
+
+
+state 20
+
+    (6) values -> VAL COLON . WORD
+
+    WORD            shift and go to state 30
+
+
+state 21
+
+    (3) entry -> HASH WORD LANG WORD RANG values notes remissiveEntries .
+    (13) remissiveEntries -> remissiveEntries . SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD
+
+    HASH            reduce using rule 3 (entry -> HASH WORD LANG WORD RANG values notes remissiveEntries .)
+    $end            reduce using rule 3 (entry -> HASH WORD LANG WORD RANG values notes remissiveEntries .)
+    SEMI_COLON      shift and go to state 31
+
+
+state 22
+
+    (11) notes -> notes NOTE . WORD
+
+    WORD            shift and go to state 32
+
+
+state 23
+
+    (12) remissiveEntries -> REM . ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD
+
+    ENTRY           shift and go to state 33
+
+
+state 24
+
+    (7) values -> values VAR COLON . WORD
+
+    WORD            shift and go to state 34
+
+
+state 25
+
+    (8) values -> values SYN COLON . WORD
+
+    WORD            shift and go to state 35
+
+
+state 26
+
+    (9) values -> values VAL COLON . WORD
+
+    WORD            shift and go to state 36
+
+
+state 27
+
+    (10) notes -> NOTE WORD .
+
+    NOTE            reduce using rule 10 (notes -> NOTE WORD .)
+    REM             reduce using rule 10 (notes -> NOTE WORD .)
+
+
+state 28
+
+    (4) values -> VAR COLON WORD .
+
+    VAR             reduce using rule 4 (values -> VAR COLON WORD .)
+    SYN             reduce using rule 4 (values -> VAR COLON WORD .)
+    VAL             reduce using rule 4 (values -> VAR COLON WORD .)
+    NOTE            reduce using rule 4 (values -> VAR COLON WORD .)
+
+
+state 29
+
+    (5) values -> SYN COLON WORD .
+
+    VAR             reduce using rule 5 (values -> SYN COLON WORD .)
+    SYN             reduce using rule 5 (values -> SYN COLON WORD .)
+    VAL             reduce using rule 5 (values -> SYN COLON WORD .)
+    NOTE            reduce using rule 5 (values -> SYN COLON WORD .)
+
+
+state 30
+
+    (6) values -> VAL COLON WORD .
+
+    VAR             reduce using rule 6 (values -> VAL COLON WORD .)
+    SYN             reduce using rule 6 (values -> VAL COLON WORD .)
+    VAL             reduce using rule 6 (values -> VAL COLON WORD .)
+    NOTE            reduce using rule 6 (values -> VAL COLON WORD .)
+
+
+state 31
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON . WORD SEMI_COLON WORD SEMI_COLON WORD
+
+    WORD            shift and go to state 37
+
+
+state 32
+
+    (11) notes -> notes NOTE WORD .
+
+    NOTE            reduce using rule 11 (notes -> notes NOTE WORD .)
+    REM             reduce using rule 11 (notes -> notes NOTE WORD .)
+
+
+state 33
+
+    (12) remissiveEntries -> REM ENTRY . WORD SEMI_COLON WORD SEMI_COLON WORD
+
+    WORD            shift and go to state 38
+
+
+state 34
+
+    (7) values -> values VAR COLON WORD .
+
+    VAR             reduce using rule 7 (values -> values VAR COLON WORD .)
+    SYN             reduce using rule 7 (values -> values VAR COLON WORD .)
+    VAL             reduce using rule 7 (values -> values VAR COLON WORD .)
+    NOTE            reduce using rule 7 (values -> values VAR COLON WORD .)
+
+
+state 35
+
+    (8) values -> values SYN COLON WORD .
+
+    VAR             reduce using rule 8 (values -> values SYN COLON WORD .)
+    SYN             reduce using rule 8 (values -> values SYN COLON WORD .)
+    VAL             reduce using rule 8 (values -> values SYN COLON WORD .)
+    NOTE            reduce using rule 8 (values -> values SYN COLON WORD .)
+
+
+state 36
+
+    (9) values -> values VAL COLON WORD .
+
+    VAR             reduce using rule 9 (values -> values VAL COLON WORD .)
+    SYN             reduce using rule 9 (values -> values VAL COLON WORD .)
+    VAL             reduce using rule 9 (values -> values VAL COLON WORD .)
+    NOTE            reduce using rule 9 (values -> values VAL COLON WORD .)
+
+
+state 37
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON WORD . SEMI_COLON WORD SEMI_COLON WORD
+
+    SEMI_COLON      shift and go to state 39
+
+
+state 38
+
+    (12) remissiveEntries -> REM ENTRY WORD . SEMI_COLON WORD SEMI_COLON WORD
+
+    SEMI_COLON      shift and go to state 40
+
+
+state 39
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON . WORD SEMI_COLON WORD
+
+    WORD            shift and go to state 41
+
+
+state 40
+
+    (12) remissiveEntries -> REM ENTRY WORD SEMI_COLON . WORD SEMI_COLON WORD
+
+    WORD            shift and go to state 42
+
+
+state 41
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD . SEMI_COLON WORD
+
+    SEMI_COLON      shift and go to state 43
+
+
+state 42
+
+    (12) remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD . SEMI_COLON WORD
+
+    SEMI_COLON      shift and go to state 44
+
+
+state 43
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON . WORD
+
+    WORD            shift and go to state 45
+
+
+state 44
+
+    (12) remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON . WORD
+
+    WORD            shift and go to state 46
+
+
+state 45
+
+    (13) remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD .
+
+    SEMI_COLON      reduce using rule 13 (remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD .)
+    HASH            reduce using rule 13 (remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD .)
+    $end            reduce using rule 13 (remissiveEntries -> remissiveEntries SEMI_COLON WORD SEMI_COLON WORD SEMI_COLON WORD .)
+
+
+state 46
+
+    (12) remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD .
+
+    SEMI_COLON      reduce using rule 12 (remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD .)
+    HASH            reduce using rule 12 (remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD .)
+    $end            reduce using rule 12 (remissiveEntries -> REM ENTRY WORD SEMI_COLON WORD SEMI_COLON WORD .)
+

@@ -157,3 +157,50 @@ for entry in data["entries"]:
 
 with open('out/medicina_treated.json', 'w', encoding='utf-8') as f:
     json.dump(dataTreated, f, sort_keys=True, indent=1, ensure_ascii=False)
+
+
+def jsonToTxt(data):
+    txtTreated = ""
+    for k,v in data.items():
+        txtTreated += "--- " + str(k) + "\n"
+        for i,j in v.items():
+            if i == "gender":
+                txtTreated += "# " + j + "\n"
+
+            elif i == "subdomain":
+                txtTreated += "$ " + j + "\n"
+
+            elif i == "languages":
+                ##txtTreated += "\t" + i + "\n"
+                for l,m in j.items():
+                    txtTreated += "> " + l + " :\n"
+                    for n,o in m.items():
+                        txtTreated += "% " + n + " : "
+                        for i in range(len(o)-1):
+                            txtTreated += str(o[i]) + " ; "
+                        if len(o) > 0:
+                            txtTreated += str(o[-1]) + "\n"
+                        else:
+                            txtTreated += "\n"
+
+            elif i == "notes":
+                txtTreated += "! notes:" + j + "\n"
+            
+            elif i == "remissiveEntries":
+                txtTreated += "& " + i + " :\n"
+                for p in range(len(j)-1):
+                    txtTreated += str(j[p]) + " ; "
+                    if len(j) > 0:
+                        txtTreated += str(j[-1]) + " ; "
+                    else:
+                        txtTreated += "\n"
+
+            else:
+                pass
+
+
+    return txtTreated
+
+txtTreated = jsonToTxt(dataTreated)
+with open('out/medicina_treated.txt', 'w', encoding='utf-8') as f:
+    f.write(txtTreated)
