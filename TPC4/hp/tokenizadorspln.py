@@ -58,9 +58,11 @@ print(txt)
 
 # 1 Separar pontuacao das palavras
 # 2 Marcar capitulos [DONE]
+    # Outras unidades de quebra: prologo, introducao, anexo, etc.
+    # Identificar capitulos em diferentes linguas: francês, ingles, etc.
 # 3 Separar paragrafos de linhas pequenas
-# 4 Juntar linhas da mesma frase
-# 5 Uma frase por linha
+# 4 Juntar linhas da mesma frase [DONE]
+# 5 Uma frase por linha [DONE]
 # 6 Quebras de página [DONE]
 # 7 Marcar poemas [DONE]
 # 8 Guardar abreviaturas: Sr., Sra., etc. [DONE]
