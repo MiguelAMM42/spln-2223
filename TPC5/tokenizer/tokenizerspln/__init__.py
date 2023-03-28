@@ -37,7 +37,11 @@ def tokenizer():
 
 
     with open(fileIn, 'r') as f:
-        txt = f.read()
+        lines = f.readlines()
+
+    txt = ""
+    for line in lines:
+        txt += line
     #txt = ""
     #for line in fileinput.input():
         #txt += line
